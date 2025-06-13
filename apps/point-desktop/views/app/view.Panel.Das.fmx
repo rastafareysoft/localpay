@@ -1,0 +1,4 @@
+inherited vPanel: TvPanel
+  Caption = 'Panel'
+  DesignerMasterStyle = 0
+end

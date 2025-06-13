@@ -1,0 +1,22 @@
+object vApp: TvApp
+  Left = 0
+  Top = 0
+  Caption = 'App'
+  ClientHeight = 524
+  ClientWidth = 356
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  DesignerMasterStyle = 0
+  object lytApp: TLayout
+    Align = Client
+    Scale.X = 1.500000000000000000
+    Scale.Y = 1.500000000000000000
+    Size.Width = 237.333343505859400000
+    Size.Height = 349.333343505859400000
+    Size.PlatformDefault = False
+    TabOrder = 0
+  end
+end

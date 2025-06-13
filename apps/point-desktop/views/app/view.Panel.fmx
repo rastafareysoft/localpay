@@ -1,0 +1,25 @@
+inherited vPanel: TvPanel
+  Caption = 'Panel'
+  ClientWidth = 624
+  DesignerMasterStyle = 0
+  inherited lytApp: TLayout
+    Size.Width = 416.000000000000000000
+    object tbrTop: TToolBar
+      Size.Width = 416.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object sbtConfiguration: TSpeedButton
+        Align = Right
+        Position.X = 368.000000000000000000
+        Size.Width = 48.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'composetoolbutton'
+        Text = 'sbtConfiguration'
+        TextSettings.Trimming = None
+        OnClick = sbtConfigurationClick
+      end
+    end
+  end
+end
