@@ -1,0 +1,353 @@
+object vUpdateData: TvUpdateData
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 484
+  ClientWidth = 636
+  Constraints.MinHeight = 484.000000000000000000
+  Constraints.MinWidth = 636.000000000000000000
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Z: TLayout
+    Align = Client
+    Scale.X = 1.500000000000000000
+    Scale.Y = 1.500000000000000000
+    Size.Width = 424.000000000000000000
+    Size.Height = 322.666687011718800000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object Layout2: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 14.000000000000000000
+      Size.Width = 424.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      object Edit1: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Client
+        TabOrder = 0
+        Text = 'AABBCCDD'
+        Enabled = False
+        Size.Width = 253.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object Label2: TLabel
+        Align = Left
+        Enabled = False
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'Serial de la tarjeta:'
+        TabOrder = 1
+      end
+    end
+    object Layout3: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 50.000000000000000000
+      Size.Width = 424.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      object Edit2: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Client
+        TabOrder = 0
+        Text = 'P'#233'rez Farias, Pedro Jos'#233
+        Size.Width = 253.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object Label3: TLabel
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'Apellidos(s) y Nombre(s):'
+        TabOrder = 1
+      end
+    end
+    object Layout1: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 86.000000000000000000
+      Size.Width = 424.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      object Label4: TLabel
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'Identificaci'#243'n:'
+        TabOrder = 1
+      end
+      object ComboBox1: TComboBox
+        Align = Left
+        Items.Strings = (
+          'C.I.'
+          'PA'
+          'CE')
+        ItemIndex = 0
+        Position.X = 157.000000000000000000
+        Size.Width = 44.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+      end
+      object ComboBox2: TComboBox
+        Align = Left
+        Items.Strings = (
+          'N'
+          'E'
+          'O')
+        ItemIndex = 0
+        Position.X = 201.000000000000000000
+        Size.Width = 40.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+      end
+      object Edit4: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Client
+        TabOrder = 0
+        Text = '12.345.678'
+        Size.Width = 169.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object Layout4: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 122.000000000000000000
+      Size.Width = 424.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      object Label5: TLabel
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'Correo electr'#243'nico:'
+        TabOrder = 1
+      end
+      object Edit3: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Client
+        TabOrder = 0
+        Text = 'email@email.com'
+        Size.Width = 253.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object Layout5: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 158.000000000000000000
+      Size.Width = 424.000000000000000000
+      Size.Height = 37.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object Label6: TLabel
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 37.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'Direcci'#243'n:'
+        TabOrder = 0
+      end
+      object Memo1: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        Lines.Strings = (
+          'Direcci'#243'n: Calle Mayor 123, Apartamento 101 '
+          'Ciudad: Mari'#241'oEstado: Nueva Esparta ')
+        TextSettings.WordWrap = True
+        Align = Client
+        Size.Width = 253.000000000000000000
+        Size.Height = 37.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Viewport.Width = 249.000000000000000000
+        Viewport.Height = 33.000000000000000000
+      end
+    end
+    object Layout7: TLayout
+      Align = Bottom
+      Margins.Left = 14.000000000000000000
+      Margins.Right = 14.000000000000000000
+      Margins.Bottom = 14.000000000000000000
+      Position.X = 14.000000000000000000
+      Position.Y = 268.666687011718800000
+      Size.Width = 396.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 6
+      object Button1: TButton
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Text = 'Leer'
+        TextSettings.Trimming = None
+      end
+      object Button2: TButton
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Position.X = 84.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'Recargar'
+        TextSettings.Trimming = None
+      end
+      object Button3: TButton
+        Align = Right
+        ModalResult = 8
+        Position.X = 316.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Salir'
+        TextSettings.Trimming = None
+      end
+      object Button4: TButton
+        Align = Left
+        ModalResult = 2
+        Margins.Right = 4.000000000000000000
+        Position.X = 168.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Cancelar'
+        TextSettings.Trimming = None
+      end
+    end
+    object Label1: TLabel
+      Align = Client
+      StyledSettings = [Family, Size, Style]
+      Size.Width = 424.000000000000000000
+      Size.Height = 37.666687011718750000
+      Size.PlatformDefault = False
+      TextSettings.FontColor = claDarkgreen
+      TextSettings.HorzAlign = Center
+      TextSettings.WordWrap = False
+      TabOrder = 7
+    end
+    object Layout6: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 209.000000000000000000
+      Size.Width = 424.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object Label7: TLabel
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'Tel'#233'fono(s):'
+        TabOrder = 0
+      end
+      object GridPanelLayout1: TGridPanelLayout
+        Align = Client
+        Size.Width = 253.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        ColumnCollection = <
+          item
+            Value = 33.333333333333300000
+          end
+          item
+            Value = 33.333333333333300000
+          end
+          item
+            Value = 33.333333333333300000
+          end>
+        ControlCollection = <
+          item
+            Column = 0
+            Control = Edit5
+            Row = 0
+          end
+          item
+            Column = 1
+            Control = Edit6
+            Row = 0
+          end
+          item
+            Column = 2
+            Control = Edit7
+            Row = 0
+          end>
+        RowCollection = <
+          item
+            SizeStyle = Auto
+          end>
+        object Edit5: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Text = '04123456789'
+          Size.Width = 84.333335876464840000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object Edit6: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 1
+          Text = '04123456789'
+          Size.Width = 84.333335876464840000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object Edit7: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 0
+          Text = '04123456789'
+          Size.Width = 84.333328247070310000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+    end
+  end
+end

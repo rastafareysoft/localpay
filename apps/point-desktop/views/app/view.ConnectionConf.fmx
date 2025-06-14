@@ -23,6 +23,7 @@ inherited vConnectionConf: TvConnectionConf
       object Label1: TLabel
         Align = Left
         AutoSize = True
+        Enabled = False
         Size.Width = 105.599998474121100000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
@@ -32,6 +33,7 @@ inherited vConnectionConf: TvConnectionConf
       end
       object cbbModelo: TComboBox
         Align = Client
+        Enabled = False
         Items.Strings = (
           'SL500L(1105)')
         ItemIndex = 0

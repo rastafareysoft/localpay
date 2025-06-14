@@ -1,0 +1,71 @@
+object vPanel: TvPanel
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 104
+  ClientWidth = 596
+  Constraints.MinHeight = 92.000000000000000000
+  Constraints.MinWidth = 584.000000000000000000
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Z: TLayout
+    Align = Client
+    Scale.X = 1.500000000000000000
+    Scale.Y = 1.500000000000000000
+    Size.Width = 397.333343505859400000
+    Size.Height = 69.333335876464840000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object Layout7: TLayout
+      Align = Top
+      Margins.Left = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Margins.Right = 14.000000000000000000
+      Margins.Bottom = 14.000000000000000000
+      Position.X = 14.000000000000000000
+      Position.Y = 14.000000000000000000
+      Size.Width = 369.333343505859400000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 6
+      object Button1: TButton
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Size.Width = 120.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'Update'
+        TextSettings.Trimming = None
+        OnClick = Button1Click
+      end
+      object Button2: TButton
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Position.X = 124.000000000000000000
+        Size.Width = 120.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Recargar'
+        TextSettings.Trimming = None
+        OnClick = Button2Click
+      end
+      object Button4: TButton
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Position.X = 248.000000000000000000
+        Size.Width = 120.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Configurar'
+        TextSettings.Trimming = None
+        OnClick = Button4Click
+      end
+    end
+  end
+end
