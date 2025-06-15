@@ -13,10 +13,12 @@ type
     Button1: TButton;
     Button2: TButton;
     Button4: TButton;
+    Button3: TButton;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,7 +32,7 @@ implementation
 
 {$R *.fmx}
 
-uses view.DeviceConfiguration, view.PlaceBalance, view.UpdateData;
+uses view.DeviceConfiguration, view.PlaceBalance, view.UpdateData, view.AsignCompany;
 
 procedure TvPanel.Button1Click(Sender: TObject);
 begin
@@ -44,6 +46,15 @@ end;
 procedure TvPanel.Button2Click(Sender: TObject);
 begin
   With TvPlaceBalance.Create(Self) Do Try
+    ShowModal;
+  Finally
+    Free;
+  End;
+end;
+
+procedure TvPanel.Button3Click(Sender: TObject);
+begin
+  With TvAsignCompany.Create(Self) Do Try
     ShowModal;
   Finally
     Free;

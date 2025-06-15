@@ -30,6 +30,8 @@ Type
   Function SL500_Write(Var ABlocksData: TArray<TBytes>; Const ABlocks: TBytes): Boolean;
   Function SL500_Halt: Boolean;
 
+  Function IndexOfBauds(Const ABauds: Integer): Integer;
+
 implementation
 
 Uses strs.Hex;
@@ -54,6 +56,21 @@ Const
   Function rf_M1_read(Const AIcDev, Ablock: Byte; Var AData, ALen: Byte): Integer; Stdcall; External __DLL;
   Function rf_M1_write(Const AIcDev, Ablock: Byte; Var aData: Byte): Integer; Stdcall; External __DLL;
   Function rf_halt(Const AIcDev: Byte): Integer; Stdcall; External __DLL;
+
+Function IndexOfBauds(Const ABauds: Integer): Integer;
+Const
+  __BAUDS: Array[TBauds] Of Integer = (9600, 14400, 19200, 28800, 38400, 57600, 115200);
+Var
+  I: TBauds;
+Begin
+  Result := -1;
+  For I := Low(I) To High(I) Do Begin
+    If __BAUDS[I] = ABauds Then Begin
+      Result := Integer(I);
+      Break;
+    End;
+  End;
+End;
 
 {$REGION 'System port'}
 Function SL500_OpenPort(Const APor: Word; Const ABauds: TBauds): Boolean;

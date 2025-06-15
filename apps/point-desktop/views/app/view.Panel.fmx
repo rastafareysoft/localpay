@@ -1,24 +1,102 @@
 inherited vPanel: TvPanel
   Caption = 'Panel'
-  ClientWidth = 624
+  ClientHeight = 104
+  ClientWidth = 752
+  Constraints.MinHeight = 104.000000000000000000
+  Constraints.MinWidth = 752.000000000000000000
   DesignerMasterStyle = 0
   inherited lytApp: TLayout
-    Size.Width = 416.000000000000000000
-    object tbrTop: TToolBar
-      Size.Width = 416.000000000000000000
-      Size.Height = 48.000000000000000000
+    Size.Width = 501.333343505859400000
+    Size.Height = 69.333335876464840000
+    object gdlPanel: TGridPanelLayout
+      Align = Client
+      Padding.Left = 1.000000000000000000
+      Padding.Right = 1.000000000000000000
+      Margins.Left = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Margins.Right = 14.000000000000000000
+      Margins.Bottom = 14.000000000000000000
+      Size.Width = 473.333343505859400000
+      Size.Height = 41.333335876464840000
       Size.PlatformDefault = False
       TabOrder = 0
-      object sbtConfiguration: TSpeedButton
-        Align = Right
-        Position.X = 368.000000000000000000
-        Size.Width = 48.000000000000000000
-        Size.Height = 48.000000000000000000
+      ColumnCollection = <
+        item
+          Value = 25.000000000000000000
+        end
+        item
+          Value = 25.000000000000000000
+        end
+        item
+          Value = 25.000000000000000000
+        end
+        item
+          Value = 25.000000000000000000
+        end>
+      ControlCollection = <
+        item
+          Column = 0
+          Control = btnUpdate
+          Row = 0
+        end
+        item
+          Column = 1
+          Control = btnRecharge
+          Row = 0
+        end
+        item
+          Column = 2
+          Control = btnRegister
+          Row = 0
+        end
+        item
+          Column = 3
+          Control = btnConfig
+          Row = 0
+        end>
+      RowCollection = <
+        item
+          Value = 100.000000000000000000
+        end>
+      object btnUpdate: TButton
+        Align = Client
+        Size.Width = 116.333335876464800000
+        Size.Height = 41.333335876464840000
         Size.PlatformDefault = False
-        StyleLookup = 'composetoolbutton'
-        Text = 'sbtConfiguration'
+        TabOrder = 3
+        Text = 'Actualizar'
         TextSettings.Trimming = None
-        OnClick = sbtConfigurationClick
+        OnClick = btnUpdateClick
+      end
+      object btnRecharge: TButton
+        Align = Client
+        Size.Width = 116.333335876464800000
+        Size.Height = 41.333335876464840000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'Recargar'
+        TextSettings.Trimming = None
+        OnClick = btnRechargeClick
+      end
+      object btnRegister: TButton
+        Align = Client
+        Size.Width = 116.333328247070300000
+        Size.Height = 41.333335876464840000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Registar'
+        TextSettings.Trimming = None
+        OnClick = btnRegisterClick
+      end
+      object btnConfig: TButton
+        Align = Client
+        Size.Width = 116.333343505859400000
+        Size.Height = 41.333335876464840000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Configurar'
+        TextSettings.Trimming = None
+        OnClick = btnConfigClick
       end
     end
   end

@@ -98,38 +98,12 @@ object vUpdateData: TvUpdateData
         Text = 'Identificaci'#243'n:'
         TabOrder = 1
       end
-      object ComboBox1: TComboBox
-        Align = Left
-        Items.Strings = (
-          'C.I.'
-          'PA'
-          'CE')
-        ItemIndex = 0
-        Position.X = 157.000000000000000000
-        Size.Width = 44.000000000000000000
-        Size.Height = 22.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 3
-      end
-      object ComboBox2: TComboBox
-        Align = Left
-        Items.Strings = (
-          'N'
-          'E'
-          'O')
-        ItemIndex = 0
-        Position.X = 201.000000000000000000
-        Size.Width = 40.000000000000000000
-        Size.Height = 22.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 2
-      end
       object Edit4: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         Align = Client
         TabOrder = 0
-        Text = '12.345.678'
-        Size.Width = 169.000000000000000000
+        Text = 'V-12.345.678'
+        Size.Width = 253.000000000000000000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
       end

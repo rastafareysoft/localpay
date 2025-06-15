@@ -6,6 +6,7 @@ uses
   types.Map;
 
 Const
+  __CARDS_DEFAULT_KEY = 'FFFFFFFFFFFF';
   __CARDS_MAPS: TCardsMaps = (
     //Mifare 1K
     (

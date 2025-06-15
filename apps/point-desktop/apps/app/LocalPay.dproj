@@ -236,12 +236,28 @@
         </DCCReference>
         <DCCReference Include="..\..\models\library\dll.SL500.pas"/>
         <DCCReference Include="..\..\types\app\types.App.pas"/>
-        <DCCReference Include="..\..\views\app\view.ConnectionConf.pas">
-            <Form>vConnectionConf</Form>
-            <FormType>fmx</FormType>
-        </DCCReference>
         <DCCReference Include="..\..\const\app\constt.Map.Iso14443A.pas"/>
         <DCCReference Include="..\..\types\app\types.Map.pas"/>
+        <DCCReference Include="..\..\views\app\view.AppData.pas">
+            <Form>vAppData</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="..\..\views\app\view.DeviceConfiguration.pas">
+            <Form>vDeviceConfiguration</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="..\..\views\app\view.CardRegister.pas">
+            <Form>vCardRegister</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="..\..\views\app\view.CardUpdate.pas">
+            <Form>vCardUpdate</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="..\..\views\app\view.CardBalanceRecharge.pas">
+            <Form>vCardBalanceRecharge</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

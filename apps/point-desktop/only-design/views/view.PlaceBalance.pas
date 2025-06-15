@@ -27,24 +27,22 @@ type
     Button2: TButton;
     Button3: TButton;
     Button4: TButton;
-    Edit5: TEdit;
-    Edit6: TEdit;
-    Layout5: TLayout;
-    Label6: TLabel;
-    Memo1: TMemo;
     Label1: TLabel;
-    Layout8: TLayout;
-    Label8: TLabel;
-    Edit7: TEdit;
     Layout9: TLayout;
     Label9: TLabel;
     Edit8: TEdit;
-    Layout10: TLayout;
-    Label10: TLabel;
-    GridPanelLayout2: TGridPanelLayout;
+    Layout6: TLayout;
+    Label7: TLabel;
+    Edit9: TEdit;
+    Layout5: TLayout;
+    Label6: TLabel;
+    Memo1: TMemo;
+    Layout8: TLayout;
+    Label8: TLabel;
+    GridPanelLayout1: TGridPanelLayout;
+    Edit7: TEdit;
     Edit10: TEdit;
     Edit11: TEdit;
-    Edit12: TEdit;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }

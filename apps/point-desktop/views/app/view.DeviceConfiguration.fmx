@@ -1,0 +1,160 @@
+inherited vDeviceConfiguration: TvDeviceConfiguration
+  Caption = 'Configuraci'#243'n de dispositivo'
+  ClientHeight = 300
+  Constraints.MinHeight = 300.000000000000000000
+  DesignerMasterStyle = 0
+  inherited lytApp: TLayout
+    Size.Height = 200.000000000000000000
+    inherited lytButtons: TLayout
+      Position.Y = 146.000000000000000000
+      TabOrder = 3
+      inherited btnActionModule: TButton
+        Text = 'Verificar'
+        OnClick = btnActionModuleClick
+      end
+    end
+    inherited lblMessage: TLabel
+      Size.Height = 38.000000000000000000
+      Text = ''
+      TabOrder = 1
+    end
+    object lytModel: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 14.000000000000000000
+      Size.Width = 384.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 7
+      object lblModel: TLabel
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'Modelo:'
+        TabOrder = 0
+      end
+      object cmbModel: TComboBox
+        Align = Client
+        Items.Strings = (
+          'SL-500')
+        Size.Width = 213.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        OnChange = cmbPortChange
+      end
+    end
+    object lytPort: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 50.000000000000000000
+      Size.Width = 384.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      object lblPort: TLabel
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'Puerto:'
+        TabOrder = 0
+      end
+      object cmbPort: TComboBox
+        Tag = 1
+        Align = Client
+        Items.Strings = (
+          'Com1'
+          'Com2'
+          'Com3'
+          'Com4'
+          'Com5'
+          'Com6'
+          'Com7'
+          'Com8')
+        Size.Width = 213.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        OnChange = cmbPortChange
+      end
+    end
+    object lytBauds: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 86.000000000000000000
+      Size.Width = 384.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object lblBauds: TLabel
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'Baudios:'
+        TabOrder = 0
+      end
+      object cmbBauds: TComboBox
+        Tag = 2
+        Align = Client
+        Items.Strings = (
+          '9600'
+          '14400'
+          '19200'
+          '28800'
+          '38400'
+          '57600'
+          '115200')
+        Size.Width = 213.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        OnChange = cmbPortChange
+      end
+    end
+  end
+  inherited actData: TActionList
+    Left = 287
+    Top = 257
+  end
+  inherited cdsData: TClientDataSet
+    FieldDefs = <
+      item
+        Name = 'fldModel'
+        Attributes = [faRequired]
+        DataType = ftInteger
+      end
+      item
+        Name = 'fldPort'
+        Attributes = [faRequired]
+        DataType = ftInteger
+      end
+      item
+        Name = 'fldBauds'
+        Attributes = [faRequired]
+        DataType = ftInteger
+      end>
+    AfterPost = cdsDataAfterPost
+    Left = 399
+    Top = 257
+  end
+  inherited bnsData: TBindSourceDB
+    Left = 463
+    Top = 257
+  end
+  inherited bnlData: TBindingsList
+    Left = 515
+    Top = 257
+  end
+end

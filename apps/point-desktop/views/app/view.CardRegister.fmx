@@ -1,0 +1,202 @@
+inherited vCardRegister: TvCardRegister
+  Caption = 'Registrar Tarjetas'
+  ClientHeight = 408
+  Constraints.MinHeight = 408.000000000000000000
+  DesignerMasterStyle = 0
+  inherited lytApp: TLayout
+    Size.Height = 272.000000000000000000
+    inherited lytButtons: TLayout
+      Position.Y = 218.000000000000000000
+      TabOrder = 3
+      inherited btnActionModule: TButton
+        Text = 'Leer'
+        OnClick = btnActionModuleClick
+      end
+      inherited btnSaveData: TButton
+        Action = nil
+        Text = 'Registrar'
+        OnClick = btnSaveDataClick
+      end
+    end
+    inherited lblMessage: TLabel
+      Size.Height = 38.000000000000000000
+      Text = ''
+      TabOrder = 1
+    end
+    object lytCardSerial: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 14.000000000000000000
+      Size.Width = 384.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 10
+      object edCardSerial: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Client
+        TabOrder = 0
+        Enabled = False
+        Size.Width = 213.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object lblCardSerial: TLabel
+        Align = Left
+        Enabled = False
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'Serial de la tarjeta:'
+        TabOrder = 1
+      end
+    end
+    object lytCompanyId0: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 50.000000000000000000
+      Size.Width = 384.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      object lblCompanyId0: TRadioButton
+        Align = Left
+        GroupName = 'Company'
+        IsChecked = True
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Primera Compa'#241'ia, C.A.'
+        TextSettings.HorzAlign = Trailing
+      end
+      object edCompanyId0: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Client
+        TabOrder = 0
+        KeyboardType = EmailAddress
+        Text = '12345678'
+        Size.Width = 213.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object lytCompanyIdentication0: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 86.000000000000000000
+      Size.Width = 384.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 6
+      object lblCompanyIdentication0: TLabel
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'Identificacion:'
+        TabOrder = 1
+      end
+      object edCompanyIdentication0: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Client
+        TabOrder = 0
+        Text = 'J-1234567-0'
+        Size.Width = 213.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object lytCompanyIdentication1: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 158.000000000000000000
+      Size.Width = 384.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      object lblCompanyIdentication1: TLabel
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'Identificacion:'
+        TabOrder = 1
+      end
+      object edCompanyIdentication1: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Client
+        TabOrder = 0
+        Text = '21-90123456'
+        Size.Width = 213.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object lytCompanyId1: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 122.000000000000000000
+      Size.Width = 384.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object lblCompanyId1: TRadioButton
+        Align = Left
+        GroupName = 'Company'
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Second Bussines, LLC'
+        TextSettings.HorzAlign = Trailing
+      end
+      object edCompanyId1: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Client
+        TabOrder = 0
+        Text = '90123456'
+        Size.Width = 213.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+  end
+  inherited actData: TActionList
+    Left = 352
+    Top = 352
+    inherited actSaved: TFMXBindNavigatePost
+      Text = 'Recargar'
+    end
+    object Action1: TAction
+      Category = 'LiveBindings'
+      Text = 'Action1'
+      ShortCut = 116
+      OnExecute = Action1Execute
+    end
+  end
+  inherited cdsData: TClientDataSet
+    Left = 400
+    Top = 352
+  end
+  inherited bnsData: TBindSourceDB
+    Left = 448
+    Top = 352
+  end
+  inherited bnlData: TBindingsList
+    Left = 500
+    Top = 352
+  end
+end

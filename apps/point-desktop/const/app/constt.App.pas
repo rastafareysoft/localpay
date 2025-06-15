@@ -15,7 +15,7 @@ Const
   __POSITION_HEIGHT = 'position.height';
   //------------------------
   __CONNECTION_FILE = 'connection.connection';
-  __CONNECTION_SECTION = 'connectionl';
+  __CONNECTION_SECTION = 'connection';
   __CONNECTION_MODEL = 'connection.model';
   __CONNECTION_PORT = 'connection.port';
   __CONNECTION_BAUDS = 'connection.bauds';

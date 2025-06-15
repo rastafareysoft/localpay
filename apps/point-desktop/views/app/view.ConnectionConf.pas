@@ -46,15 +46,6 @@ Const
   __COLORS: Array[Boolean] Of TAlphaColor = (TAlphaColorRec.Darkred, TAlphaColorRec.Darkgreen);
 begin
   inherited;
-  If SL500_OpenPort(cbbPort.ItemIndex+1, TBauds(cbbBauds.ItemIndex)) Then Begin
-    SL500_Beep(10);
-    lblMessage.TextSettings.FontColor := __COLORS[True];
-    lblMessage.Text := 'Conexión existosa.';
-    SL500_ClosePort;
-  End Else Begin
-    lblMessage.TextSettings.FontColor := __COLORS[False];
-    lblMessage.Text := 'Conexión fallida.';
-  End;
 end;
 
 procedure TvConnectionConf.FormCreate(Sender: TObject);

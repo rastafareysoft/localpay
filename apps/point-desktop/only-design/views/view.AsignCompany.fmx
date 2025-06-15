@@ -1,0 +1,242 @@
+object vAsignCompany: TvAsignCompany
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 408
+  ClientWidth = 636
+  Constraints.MinHeight = 408.000000000000000000
+  Constraints.MinWidth = 636.000000000000000000
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Z: TLayout
+    Align = Client
+    Scale.X = 1.500000000000000000
+    Scale.Y = 1.500000000000000000
+    Size.Width = 424.000000000000000000
+    Size.Height = 272.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object Layout2: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 14.000000000000000000
+      Size.Width = 424.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      object Edit1: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Client
+        TabOrder = 0
+        Text = 'AABBCCDD'
+        Enabled = False
+        Size.Width = 253.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object Label2: TLabel
+        Align = Left
+        Enabled = False
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'Serial de la tarjeta:'
+        TabOrder = 1
+      end
+    end
+    object Layout7: TLayout
+      Align = Bottom
+      Margins.Left = 14.000000000000000000
+      Margins.Right = 14.000000000000000000
+      Margins.Bottom = 14.000000000000000000
+      Position.X = 14.000000000000000000
+      Position.Y = 218.000000000000000000
+      Size.Width = 396.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      object Button1: TButton
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Text = 'Leer'
+        TextSettings.Trimming = None
+      end
+      object Button2: TButton
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Position.X = 84.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'Recargar'
+        TextSettings.Trimming = None
+      end
+      object Button3: TButton
+        Align = Right
+        ModalResult = 8
+        Position.X = 316.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Salir'
+        TextSettings.Trimming = None
+      end
+      object Button4: TButton
+        Align = Left
+        ModalResult = 2
+        Margins.Right = 4.000000000000000000
+        Position.X = 168.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Cancelar'
+        TextSettings.Trimming = None
+      end
+    end
+    object Label1: TLabel
+      Align = Bottom
+      StyledSettings = [Family, Size, Style]
+      Position.Y = 180.000000000000000000
+      Size.Width = 424.000000000000000000
+      Size.Height = 38.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.FontColor = claDarkgreen
+      TextSettings.HorzAlign = Center
+      TextSettings.WordWrap = False
+      Text = 'Tarjeta virgen'
+      TabOrder = 6
+    end
+    object Layout1: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 50.000000000000000000
+      Size.Width = 424.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object RadioButton1: TRadioButton
+        Align = Left
+        GroupName = 'Company'
+        IsChecked = True
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Primera Compa'#241'ia, C.A.:'
+        TextSettings.HorzAlign = Trailing
+      end
+      object Edit3: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Client
+        TabOrder = 0
+        Text = '12345678'
+        Size.Width = 253.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object Layout4: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 86.000000000000000000
+      Size.Width = 424.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      object Label5: TLabel
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'Identificacion:'
+        TabOrder = 1
+      end
+      object Edit4: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Client
+        TabOrder = 0
+        Text = 'J-123456789-0'
+        Size.Width = 253.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object Layout3: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 122.000000000000000000
+      Size.Width = 424.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object RadioButton2: TRadioButton
+        Align = Left
+        GroupName = 'Company'
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Second Bussines, LLC:'
+        TextSettings.HorzAlign = Trailing
+      end
+      object Edit2: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Client
+        TabOrder = 0
+        Text = '90123456'
+        Size.Width = 253.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object Layout6: TLayout
+      Align = Top
+      Padding.Right = 14.000000000000000000
+      Margins.Top = 14.000000000000000000
+      Position.Y = 158.000000000000000000
+      Size.Width = 424.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      object Label4: TLabel
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'Identificacion:'
+        TabOrder = 1
+      end
+      object Edit5: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Client
+        TabOrder = 0
+        Text = '21-90123456'
+        Size.Width = 253.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+  end
+end

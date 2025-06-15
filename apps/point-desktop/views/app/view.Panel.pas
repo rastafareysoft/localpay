@@ -8,11 +8,19 @@ uses
 
 type
   TvPanel = class(TvApp)
-    tbrTop: TToolBar;
-    sbtConfiguration: TSpeedButton;
+    gdlPanel: TGridPanelLayout;
+    btnUpdate: TButton;
+    btnRecharge: TButton;
+    btnRegister: TButton;
+    btnConfig: TButton;
     procedure FormCreate(Sender: TObject);
-    procedure sbtConfigurationClick(Sender: TObject);
+    procedure btnConfigClick(Sender: TObject);
+    procedure btnRegisterClick(Sender: TObject);
+    procedure btnUpdateClick(Sender: TObject);
+    procedure btnRechargeClick(Sender: TObject);
   private
+  Protected
+    Procedure GetIni; Override;
   public
   end;
 
@@ -23,7 +31,45 @@ implementation
 
 {$R *.fmx}
 
-uses types.App, view.ConnectionConf, files.Ini, conf.App, constt.App;
+uses types.App, files.Ini, conf.App, constt.App, view.DeviceConfiguration, view.CardRegister, view.CardUpdate,
+  view.CardBalanceRecharge;
+
+procedure TvPanel.btnConfigClick(Sender: TObject);
+begin
+  With TvDeviceConfiguration.Create(Self) Do Try
+    ShowModal;
+  Finally
+    Free;
+  End;
+end;
+
+procedure TvPanel.btnRechargeClick(Sender: TObject);
+begin
+  With TvCardBalanceRecharge.Create(Self) Do Try
+    ShowModal;
+  Finally
+    Free;
+  End
+
+end;
+
+procedure TvPanel.btnRegisterClick(Sender: TObject);
+begin
+  With TvCardRegister.Create(Self) Do Try
+    ShowModal;
+  Finally
+    Free;
+  End;
+end;
+
+procedure TvPanel.btnUpdateClick(Sender: TObject);
+begin
+  With TvCardUpdate.Create(Self) Do Try
+    ShowModal;
+  Finally
+    Free;
+  End;
+end;
 
 procedure TvPanel.FormCreate(Sender: TObject);
 begin
@@ -31,15 +77,12 @@ begin
   IdModule := mdPanel;
 end;
 
-procedure TvPanel.sbtConfigurationClick(Sender: TObject);
+procedure TvPanel.GetIni;
+Var
+  LIni: TArray<Variant>;
 begin
-  inherited;
-  With TvConnectionConf.Create(Self) Do Try
-    If ShowModal = mrOk Then
-      TIni.Sett(FileConnection, __CONNECTION_SECTION, [__CONNECTION_MODEL, __CONNECTION_PORT, __CONNECTION_BAUDS], [cbbModelo.ItemIndex, cbbPort.ItemIndex+1, cbbBauds.Items[cbbBauds.ItemIndex]]);
-  Finally
-    Free;
-  End;
+  LIni := TIni.Gett(FileConf, __POSITION_SECTION + '.' + Name, [__POSITION_LEFT, __POSITION_TOP, __POSITION_WIDTH, __POSITION_HEIGHT], [Trunc((Screen.Width/2) - (Width/2)), 50, Width, Height]);
+  SetBounds(LIni[0], LIni[1], LIni[2], LIni[3]);
 end;
 
 end.

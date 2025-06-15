@@ -19,8 +19,6 @@ type
     Label3: TLabel;
     Layout1: TLayout;
     Label4: TLabel;
-    ComboBox1: TComboBox;
-    ComboBox2: TComboBox;
     Edit4: TEdit;
     Layout4: TLayout;
     Label5: TLabel;

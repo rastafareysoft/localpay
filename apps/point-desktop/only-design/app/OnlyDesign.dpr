@@ -7,7 +7,8 @@ uses
   view.UpdateData in '..\views\view.UpdateData.pas' {vUpdateData},
   view.PlaceBalance in '..\views\view.PlaceBalance.pas' {vPlaceBalance},
   view.DeviceConfiguration in '..\views\view.DeviceConfiguration.pas' {vDeviceConfiguration},
-  view.Panel in '..\views\view.Panel.pas' {vPanel};
+  view.Panel in '..\views\view.Panel.pas' {vPanel},
+  view.AsignCompany in '..\views\view.AsignCompany.pas' {vAsignCompany};
 
 {$R *.res}
 

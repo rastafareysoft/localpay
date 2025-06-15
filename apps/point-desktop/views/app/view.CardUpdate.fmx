@@ -1,30 +1,32 @@
-object vPlaceBalance: TvPlaceBalance
-  Left = 0
-  Top = 0
-  Caption = 'Form1'
-  ClientHeight = 592
-  ClientWidth = 640
-  Constraints.MinHeight = 592.000000000000000000
-  Constraints.MinWidth = 640.000000000000000000
-  FormFactor.Width = 320
-  FormFactor.Height = 480
-  FormFactor.Devices = [Desktop]
-  OnCreate = FormCreate
+inherited vCardUpdate: TvCardUpdate
+  Caption = 'Actaulizacion de tarjetas'
+  ClientHeight = 484
+  ClientWidth = 648
+  Constraints.MinHeight = 484.000000000000000000
+  Constraints.MinWidth = 648.000000000000000000
   DesignerMasterStyle = 0
-  object Z: TLayout
-    Align = Client
-    Scale.X = 1.500000000000000000
-    Scale.Y = 1.500000000000000000
-    Size.Width = 426.666687011718800000
-    Size.Height = 394.666687011718800000
-    Size.PlatformDefault = False
-    TabOrder = 0
+  inherited lytApp: TLayout
+    Size.Width = 432.000000000000000000
+    Size.Height = 322.666687011718800000
+    inherited lytButtons: TLayout
+      Position.Y = 268.666687011718800000
+      Size.Width = 404.000000000000000000
+      TabOrder = 3
+      inherited btnExit: TButton
+        Position.X = 324.000000000000000000
+      end
+    end
+    inherited lblMessage: TLabel
+      Size.Width = 432.000000000000000000
+      Size.Height = 37.666687011718750000
+      TabOrder = 2
+    end
     object Layout2: TLayout
       Align = Top
       Padding.Right = 14.000000000000000000
       Margins.Top = 14.000000000000000000
       Position.Y = 14.000000000000000000
-      Size.Width = 426.666687011718800000
+      Size.Width = 432.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 7
@@ -34,7 +36,7 @@ object vPlaceBalance: TvPlaceBalance
         TabOrder = 0
         Text = 'AABBCCDD'
         Enabled = False
-        Size.Width = 255.666687011718800000
+        Size.Width = 261.000000000000000000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
       end
@@ -55,7 +57,7 @@ object vPlaceBalance: TvPlaceBalance
       Padding.Right = 14.000000000000000000
       Margins.Top = 14.000000000000000000
       Position.Y = 50.000000000000000000
-      Size.Width = 426.666687011718800000
+      Size.Width = 432.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 6
@@ -64,14 +66,12 @@ object vPlaceBalance: TvPlaceBalance
         Align = Client
         TabOrder = 0
         Text = 'P'#233'rez Farias, Pedro Jos'#233
-        Enabled = False
-        Size.Width = 255.666687011718800000
+        Size.Width = 261.000000000000000000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
       end
       object Label3: TLabel
         Align = Left
-        Enabled = False
         Margins.Right = 4.000000000000000000
         Size.Width = 153.000000000000000000
         Size.Height = 22.000000000000000000
@@ -86,13 +86,12 @@ object vPlaceBalance: TvPlaceBalance
       Padding.Right = 14.000000000000000000
       Margins.Top = 14.000000000000000000
       Position.Y = 86.000000000000000000
-      Size.Width = 426.666687011718800000
+      Size.Width = 432.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 5
       object Label4: TLabel
         Align = Left
-        Enabled = False
         Margins.Right = 4.000000000000000000
         Size.Width = 153.000000000000000000
         Size.Height = 22.000000000000000000
@@ -106,8 +105,7 @@ object vPlaceBalance: TvPlaceBalance
         Align = Client
         TabOrder = 0
         Text = 'V-12.345.678'
-        Enabled = False
-        Size.Width = 255.666687011718800000
+        Size.Width = 261.000000000000000000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
       end
@@ -117,13 +115,12 @@ object vPlaceBalance: TvPlaceBalance
       Padding.Right = 14.000000000000000000
       Margins.Top = 14.000000000000000000
       Position.Y = 122.000000000000000000
-      Size.Width = 426.666687011718800000
+      Size.Width = 432.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 4
       object Label5: TLabel
         Align = Left
-        Enabled = False
         Margins.Right = 4.000000000000000000
         Size.Width = 153.000000000000000000
         Size.Height = 22.000000000000000000
@@ -137,135 +134,7 @@ object vPlaceBalance: TvPlaceBalance
         Align = Client
         TabOrder = 0
         Text = 'email@email.com'
-        Enabled = False
-        Size.Width = 255.666687011718800000
-        Size.Height = 22.000000000000000000
-        Size.PlatformDefault = False
-      end
-    end
-    object Layout7: TLayout
-      Align = Bottom
-      Margins.Left = 14.000000000000000000
-      Margins.Right = 14.000000000000000000
-      Margins.Bottom = 14.000000000000000000
-      Position.X = 14.000000000000000000
-      Position.Y = 340.666687011718800000
-      Size.Width = 398.666687011718800000
-      Size.Height = 40.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 8
-      object Button1: TButton
-        Align = Left
-        Margins.Right = 4.000000000000000000
-        Size.Width = 80.000000000000000000
-        Size.Height = 40.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 3
-        Text = 'Leer'
-        TextSettings.Trimming = None
-      end
-      object Button2: TButton
-        Align = Left
-        Margins.Right = 4.000000000000000000
-        Position.X = 84.000000000000000000
-        Size.Width = 80.000000000000000000
-        Size.Height = 40.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 2
-        Text = 'Actualizar'
-        TextSettings.Trimming = None
-      end
-      object Button3: TButton
-        Align = Right
-        ModalResult = 8
-        Position.X = 318.666687011718800000
-        Size.Width = 80.000000000000000000
-        Size.Height = 40.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 1
-        Text = 'Salir'
-        TextSettings.Trimming = None
-      end
-      object Button4: TButton
-        Align = Left
-        ModalResult = 2
-        Margins.Right = 4.000000000000000000
-        Position.X = 168.000000000000000000
-        Size.Width = 80.000000000000000000
-        Size.Height = 40.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 0
-        Text = 'Cancelar'
-        TextSettings.Trimming = None
-      end
-    end
-    object Label1: TLabel
-      Align = Client
-      StyledSettings = [Family, Size, Style]
-      Size.Width = 426.666687011718800000
-      Size.Height = 37.666687011718750000
-      Size.PlatformDefault = False
-      TextSettings.FontColor = claDarkgreen
-      TextSettings.HorzAlign = Center
-      TextSettings.WordWrap = False
-      TabOrder = 9
-    end
-    object Layout9: TLayout
-      Align = Top
-      Padding.Right = 14.000000000000000000
-      Margins.Top = 14.000000000000000000
-      Position.Y = 281.000000000000000000
-      Size.Width = 426.666687011718800000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 2
-      object Label9: TLabel
-        Align = Left
-        Margins.Right = 4.000000000000000000
-        Size.Width = 153.000000000000000000
-        Size.Height = 22.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.HorzAlign = Trailing
-        Text = 'Monto a recargar:'
-        TabOrder = 1
-      end
-      object Edit8: TEdit
-        Touch.InteractiveGestures = [LongTap, DoubleTap]
-        Align = Client
-        TabOrder = 0
-        Text = '5'
-        Size.Width = 255.666687011718800000
-        Size.Height = 22.000000000000000000
-        Size.PlatformDefault = False
-      end
-    end
-    object Layout6: TLayout
-      Align = Top
-      Padding.Right = 14.000000000000000000
-      Margins.Top = 14.000000000000000000
-      Position.Y = 245.000000000000000000
-      Size.Width = 426.666687011718800000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 3
-      object Label7: TLabel
-        Align = Left
-        Enabled = False
-        Margins.Right = 4.000000000000000000
-        Size.Width = 153.000000000000000000
-        Size.Height = 22.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.HorzAlign = Trailing
-        Text = 'Monto actual:'
-        TabOrder = 1
-      end
-      object Edit9: TEdit
-        Touch.InteractiveGestures = [LongTap, DoubleTap]
-        Align = Client
-        TabOrder = 0
-        Text = '12,65'
-        Enabled = False
-        Size.Width = 255.666687011718800000
+        Size.Width = 261.000000000000000000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
       end
@@ -275,13 +144,12 @@ object vPlaceBalance: TvPlaceBalance
       Padding.Right = 14.000000000000000000
       Margins.Top = 14.000000000000000000
       Position.Y = 158.000000000000000000
-      Size.Width = 426.666687011718800000
+      Size.Width = 432.000000000000000000
       Size.Height = 37.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       object Label6: TLabel
         Align = Left
-        Enabled = False
         Margins.Right = 4.000000000000000000
         Size.Width = 153.000000000000000000
         Size.Height = 37.000000000000000000
@@ -298,27 +166,25 @@ object vPlaceBalance: TvPlaceBalance
           'Ciudad: Mari'#241'oEstado: Nueva Esparta ')
         TextSettings.WordWrap = True
         Align = Client
-        Enabled = False
-        Size.Width = 255.666687011718800000
+        Size.Width = 261.000000000000000000
         Size.Height = 37.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
-        Viewport.Width = 255.700000000000000000
-        Viewport.Height = 37.000000000000000000
+        Viewport.Width = 257.000000000000000000
+        Viewport.Height = 33.000000000000000000
       end
     end
-    object Layout8: TLayout
+    object Layout6: TLayout
       Align = Top
       Padding.Right = 14.000000000000000000
       Margins.Top = 14.000000000000000000
       Position.Y = 209.000000000000000000
-      Size.Width = 426.666687011718800000
+      Size.Width = 432.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
-      object Label8: TLabel
+      object Label7: TLabel
         Align = Left
-        Enabled = False
         Margins.Right = 4.000000000000000000
         Size.Width = 153.000000000000000000
         Size.Height = 22.000000000000000000
@@ -329,7 +195,7 @@ object vPlaceBalance: TvPlaceBalance
       end
       object GridPanelLayout1: TGridPanelLayout
         Align = Client
-        Size.Width = 255.666687011718800000
+        Size.Width = 261.000000000000000000
         Size.Height = 22.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
@@ -346,54 +212,67 @@ object vPlaceBalance: TvPlaceBalance
         ControlCollection = <
           item
             Column = 0
-            Control = Edit7
+            Control = Edit5
             Row = 0
           end
           item
             Column = 1
-            Control = Edit10
+            Control = Edit6
             Row = 0
           end
           item
             Column = 2
-            Control = Edit11
+            Control = Edit7
             Row = 0
           end>
         RowCollection = <
           item
             SizeStyle = Auto
           end>
-        object Edit7: TEdit
+        object Edit5: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
           TabOrder = 2
           Text = '04123456789'
-          Enabled = False
-          Size.Width = 85.222229003906250000
+          Size.Width = 87.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
         end
-        object Edit10: TEdit
+        object Edit6: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
           TabOrder = 1
           Text = '04123456789'
-          Enabled = False
-          Size.Width = 85.222229003906250000
+          Size.Width = 87.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
         end
-        object Edit11: TEdit
+        object Edit7: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
           TabOrder = 0
           Text = '04123456789'
-          Enabled = False
-          Size.Width = 85.222229003906250000
+          Size.Width = 87.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
         end
       end
     end
+  end
+  inherited actData: TActionList
+    Left = 104
+    Top = 392
+  end
+  inherited cdsData: TClientDataSet
+    Left = 232
+    Top = 392
+  end
+  inherited bnsData: TBindSourceDB
+    Left = 312
+    Top = 392
+  end
+  inherited bnlData: TBindingsList
+    Left = 388
+    Top = 392
   end
 end

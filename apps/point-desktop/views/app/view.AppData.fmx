@@ -1,0 +1,117 @@
+inherited vAppData: TvAppData
+  Caption = 'vApp1'
+  ClientHeight = 140
+  ClientWidth = 576
+  Constraints.MinHeight = 140.000000000000000000
+  Constraints.MinWidth = 576.000000000000000000
+  OnCloseQuery = FormCloseQuery
+  DesignerMasterStyle = 0
+  inherited lytApp: TLayout
+    Size.Width = 384.000000000000000000
+    Size.Height = 93.333335876464840000
+    object lytButtons: TLayout
+      Align = Bottom
+      Margins.Left = 14.000000000000000000
+      Margins.Right = 14.000000000000000000
+      Margins.Bottom = 14.000000000000000000
+      Position.X = 14.000000000000000000
+      Position.Y = 39.333335876464840000
+      Size.Width = 356.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object btnActionModule: TButton
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Action Mod'
+        TextSettings.Trimming = None
+      end
+      object btnSaveData: TButton
+        Action = actSaved
+        Align = Left
+        ImageIndex = -1
+        Margins.Right = 4.000000000000000000
+        Position.X = 84.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        TextSettings.Trimming = None
+      end
+      object btnExit: TButton
+        Align = Right
+        ModalResult = 8
+        Position.X = 276.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Text = 'Salir'
+        TextSettings.Trimming = None
+      end
+      object btnCancelData: TButton
+        Action = actCancel
+        Align = Left
+        ImageIndex = -1
+        Margins.Right = 4.000000000000000000
+        Position.X = 168.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        TextSettings.Trimming = None
+      end
+    end
+    object lblMessage: TLabel
+      Align = Client
+      StyledSettings = [Family, Size, Style]
+      Size.Width = 384.000000000000000000
+      Size.Height = 39.333335876464840000
+      Size.PlatformDefault = False
+      TextSettings.FontColor = claDarkgreen
+      TextSettings.HorzAlign = Center
+      TextSettings.WordWrap = False
+      Text = 'Message'
+      TabOrder = 0
+    end
+  end
+  object actData: TActionList
+    Left = 24
+    Top = 96
+    object actSaved: TFMXBindNavigatePost
+      Category = 'LiveBindings'
+      Text = 'Guardar'
+      DataSource = bnsData
+    end
+    object actCancel: TFMXBindNavigateCancel
+      Category = 'LiveBindings'
+      Text = 'Cancelar'
+      DataSource = bnsData
+    end
+  end
+  object cdsData: TClientDataSet
+    Aggregates = <>
+    FieldDefs = <>
+    IndexDefs = <>
+    Params = <>
+    StoreDefs = True
+    Left = 152
+    Top = 96
+  end
+  object bnsData: TBindSourceDB
+    DataSet = cdsData
+    ScopeMappings = <>
+    Left = 232
+    Top = 96
+  end
+  object bnlData: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 308
+    Top = 96
+  end
+end

@@ -3,9 +3,9 @@ object vPanel: TvPanel
   Top = 0
   Caption = 'Form1'
   ClientHeight = 104
-  ClientWidth = 596
-  Constraints.MinHeight = 92.000000000000000000
-  Constraints.MinWidth = 584.000000000000000000
+  ClientWidth = 784
+  Constraints.MinHeight = 104.000000000000000000
+  Constraints.MinWidth = 784.000000000000000000
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -15,7 +15,7 @@ object vPanel: TvPanel
     Align = Client
     Scale.X = 1.500000000000000000
     Scale.Y = 1.500000000000000000
-    Size.Width = 397.333343505859400000
+    Size.Width = 522.666687011718800000
     Size.Height = 69.333335876464840000
     Size.PlatformDefault = False
     TabOrder = 0
@@ -27,7 +27,7 @@ object vPanel: TvPanel
       Margins.Bottom = 14.000000000000000000
       Position.X = 14.000000000000000000
       Position.Y = 14.000000000000000000
-      Size.Width = 369.333343505859400000
+      Size.Width = 494.666687011718800000
       Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 6
@@ -37,8 +37,8 @@ object vPanel: TvPanel
         Size.Width = 120.000000000000000000
         Size.Height = 40.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 2
-        Text = 'Update'
+        TabOrder = 3
+        Text = 'Actualizar'
         TextSettings.Trimming = None
         OnClick = Button1Click
       end
@@ -49,7 +49,7 @@ object vPanel: TvPanel
         Size.Width = 120.000000000000000000
         Size.Height = 40.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 1
+        TabOrder = 2
         Text = 'Recargar'
         TextSettings.Trimming = None
         OnClick = Button2Click
@@ -57,7 +57,7 @@ object vPanel: TvPanel
       object Button4: TButton
         Align = Left
         Margins.Right = 4.000000000000000000
-        Position.X = 248.000000000000000000
+        Position.X = 372.000000000000000000
         Size.Width = 120.000000000000000000
         Size.Height = 40.000000000000000000
         Size.PlatformDefault = False
@@ -65,6 +65,18 @@ object vPanel: TvPanel
         Text = 'Configurar'
         TextSettings.Trimming = None
         OnClick = Button4Click
+      end
+      object Button3: TButton
+        Align = Left
+        Margins.Right = 4.000000000000000000
+        Position.X = 248.000000000000000000
+        Size.Width = 120.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Asignar'
+        TextSettings.Trimming = None
+        OnClick = Button3Click
       end
     end
   end
