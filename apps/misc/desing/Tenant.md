@@ -1,92 +1,100 @@
-¡Excelente pregunta! Tienes toda la razón. He cometido un error de comunicación al no ser explícito. El diagrama que te di es **incompleto** porque solo muestra el universo de **un Tenant**.
+¡Error crítico de mi parte! Tienes toda la razón. He caído en la trampa de la simplificación excesiva al unificar `users`. Tu objeción es 100% correcta y es una distinción fundamental para la seguridad y la lógica del sistema.
 
-**Nosotros no estamos en ese diagrama, y esa es la decisión de diseño más importante que hemos tomado.**
+**Un tarjetahabiente no es lo mismo que un usuario administrativo del sistema.**
 
-La arquitectura que definimos es de **aislamiento total**. Esto significa que tenemos dos (o más) bases de datos completamente separadas:
-
-1.  **Nuestra Base de Datos (SaaS Management DB):** Donde vivimos "nosotros". Aquí gestionamos a nuestros clientes (`Tenants`), las suscripciones, nuestra contabilidad, nuestros técnicos, etc.
-2.  **La Base de Datos del Tenant (DB Plantilla):** El diagrama que te mostré. Este es el esquema que se despliega para **cada uno** de nuestros clientes en su propia base de datos aislada.
-
-Permíteme mostrarte un diagrama de más alto nivel que ilustra cómo interactúan estos dos universos.
+Debemos separarlos. Esto es una reversión de una decisión anterior, pero es la correcta. **Modificación #4 en progreso.**
 
 ---
 
-### **Diagrama de Arquitectura Global: SaaS Provider y Tenants**
+### **Re-Arquitectura: Separación de Usuarios**
 
-Este diagrama muestra dónde estamos "nosotros" y cómo nos relacionamos con el esquema que acabamos de diseñar.
+Volvemos al modelo donde tenemos dos tipos de "personas" distintas en el sistema.
+
+1.  **`end_users` (o `cardholders` - Tarjetahabientes):**
+    *   Son los clientes de nuestro cliente.
+    *   Sus "credenciales" son sus tarjetas físicas.
+    *   Pueden tener acceso a un portal de usuario final o una app móvil para consultar su saldo, pero no acceden al panel de administración.
+    *   Son los propietarios de las `accounts` y las `cards`.
+
+2.  **`admin_users` (o `staff_users` - Usuarios del Sistema):**
+    *   Son los empleados de nuestro cliente (el `Issuer`).
+    *   Tienen credenciales de `email/password`.
+    *   Son los sujetos del sistema **RBAC** (`roles`, `modules`, `applications`).
+    *   Ellos **gestionan** a los `end_users`, `cards`, `terminals`, etc.
+
+### **Diagrama E-R Corregido (Borrador v1.2)**
+
+Este nuevo diagrama separa claramente los dos tipos de usuarios y sus dominios de influencia.
 
 ```mermaid
 graph TD
-    subgraph "Nivel 0: El Cerebro (Firestore)"
-        FS["Directorio de Conexiones y Actualizaciones"]
-    end
-
-    subgraph "Universo 1: Nuestra DB de Gestión SaaS"
-        P(SaaS_Provider<br>(Nosotros))
-        CL(Clients<br><sub>(Nuestros Clientes)</sub>)
-        SUB(Subscriptions)
-        SI(SaaS_Invoices)
+    subgraph "Dominio de Administración (RBAC)"
+        AU(admin_users)
+        R(roles)
+        M(modules)
+        A(applications)
         
-        P --- CL
-        P --- SUB
-        CL -- "Tiene una" --> SUB
-        SUB -- "Genera varias" --> SI
+        AU -- "M" --> R1{user_roles} -- "N" --> R
+        A -- "M" --> R2{app_modules} -- "N" --> M
+        R -- "M" --> R3{role_permissions} -- "N" --> M
     end
 
-    subgraph "Universo 2: DB del Tenant 'Metro A'"
-        %% Este es el diagrama que te mostré antes
-        U_A(users)
-        C_A(cards)
-        Acc_A(accounts)
-        TR_A(transactions)
-        
-        U_A --- Acc_A
-        U_A --- C_A
-        C_A --- TR_A
+    subgraph "Dominio de Operación del Monedero"
+        EU(end_users)
+        Acc(accounts)
+        C(cards)
+        T(terminals)
+        TR(transactions)
+        I(issuers)
     end
     
-    subgraph "Universo 3: DB del Tenant 'Universidad B'"
-        U_B(users)
-        C_B(cards)
-        Acc_B(accounts)
-        TR_B(transactions)
+    %% --- RELACIONES CLAVE ---
 
-        U_B --- Acc_B
-        U_B --- C_B
-        C_B --- TR_B
-    end
+    %% Relación entre Dominios: Un Admin gestiona a los End Users
+    AU -- "Gestiona a varios" --> EU
 
-    %% Conexiones Lógicas (No son FKs de base de datos)
-    FS -- "Indica cómo conectar a" --> P
+    %% Relaciones de Configuración
+    I -- "Aprovisiona varios" --> T
+    I -- "Emite varias" --> C
+
+    %% Relaciones del Tarjetahabiente
+    I -- "Registra a varios" --> EU
+    EU -- "Tiene una o varias" --> Acc
+    EU -- "Posee varias" --> C
     
-    CL -- "Contiene info de conexión a DB del Tenant A" --.-> U_A
-    CL -- "Contiene info de conexión a DB del Tenant B" --.-> U_B
-    
-    %% --- Estilos ---
-    classDef saas fill:#cde4ff,stroke:#333,stroke-width:2px;
-    classDef tenant fill:#d5fada,stroke:#333,stroke-width:2px;
-    classDef cerebro fill:#fff2cc,stroke:#d6b656,stroke-width:2px;
+    %% Relaciones Transaccionales
+    Acc -- "Participa en varias" --> TR
+    C   -- "Realiza varias" --> TR
+    T   -- "Registra varias" --> TR
 
-    class P,CL,SUB,SI saas;
-    class U_A,C_A,Acc_A,TR_A tenant;
-    class U_B,C_B,Acc_B,TR_B tenant;
-    class FS cerebro;
+
+    %% --- ESTILOS ---
+    classDef entity fill:#cde4ff,stroke:#333,stroke-width:2px;
+    classDef relation fill:#d5fada,stroke:#333,stroke-width:2px;
+    
+    class AU,R,M,A,EU,Acc,C,T,TR,I entity;
+    class R1,R2,R3 relation;
 ```
 
-### Explicación del Diagrama Global
+### **Impacto en el Esquema de la Base de Datos:**
 
-*   **Tu pregunta: ¿Dónde estamos nosotros?**
-    *   Estamos en el "Universo 1: Nuestra DB de Gestión SaaS". Nuestra tabla principal es `Clients` (que para nosotros son nuestros clientes, pero para el sistema son los `Issuers` o `Tenants`).
+Ahora tendremos dos tablas de usuarios separadas, cada una con su propósito.
 
-*   **¿Cómo se conectan los mundos?**
-    *   La conexión **no es una clave foránea directa**. Es una conexión lógica.
-    *   Nuestra tabla `Clients` tiene columnas como `client_name`, `subscription_status`, y lo más importante: **`db_connection_string`**, **`db_user`**, **`db_password_encrypted`**.
-    *   Cuando la aplicación del "Metro A" se inicia, sigue el flujo que definimos:
-        1.  Consulta el **Cerebro (Firestore)**.
-        2.  Se conecta a **nuestra API** que lee nuestra **DB de Gestión**.
-        3.  Nuestra API le dice: "Ok, Metro A, tu base de datos está en el servidor `pg.server-east.com`, tu base de datos se llama `metro_a_prod`, y aquí tienes tus credenciales para acceder".
-        4.  La aplicación del Metro A se conecta a su propio universo aislado (el "Universo 2").
+**`admin_users` (Nueva)**
+*   `id`, `email`, `password_hash`, `full_name`, `status`.
+*   Relacionada con `roles` a través de la tabla intermedia `admin_user_roles`.
 
-**En resumen:** El diagrama que te di es la **plantilla** (lo que hay dentro de los cuadros verdes). El cuadro azul es donde vivimos nosotros, gestionando quién tiene acceso a qué cuadro verde.
+**`end_users` (Anteriormente `users`)**
+*   `id`, `issuer_id`, `full_name`.
+*   **Ya no necesita `email` o `password_hash`** como campos obligatorios. Su identidad principal puede ser un número de cliente o un documento. El acceso a su portal podría ser a través de un "magic link" o registrando un email opcionalmente.
+*   Relacionada con `accounts` y `cards`.
 
-Con esta aclaración, ¿te parece que ahora sí tenemos el mapa completo y podemos volver a analizar las debilidades del **esquema del tenant**?
+**Ventajas de esta Separación:**
+
+*   **Seguridad (Principio de Mínimo Privilegio):** Un tarjetahabiente comprometido (ej. a través de un portal web simple) no da acceso a ninguna parte del sistema administrativo. Las superficies de ataque están completamente aisladas.
+*   **Claridad del Modelo:** Es mucho más fácil entender quién es quién. Las consultas son más simples. No hay que añadir un `WHERE role = 'EndUser'` en cada consulta para separar a los clientes de los administradores.
+*   **Escalabilidad:** Las dos tablas pueden crecer y ser optimizadas de forma independiente. La tabla `end_users` podría llegar a tener millones de registros, mientras que `admin_users` tendrá cientos o miles.
+
+Esta fue una corrección fundamental. El "dolor de cabeza" de gestionar un solo tipo de usuario para dos propósitos tan distintos habría sido mucho mayor a largo plazo.
+
+Gracias por insistir en este punto. El diseño es ahora mucho más robusto y seguro.
