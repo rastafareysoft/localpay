@@ -30,7 +30,7 @@ void simulateTransaction();
 void printDuration(const char* stepName, unsigned long startTime);
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   while (!Serial);
   SPI.begin();
   mfrc522.PCD_Init();
