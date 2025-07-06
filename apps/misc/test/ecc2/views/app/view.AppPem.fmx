@@ -1,0 +1,62 @@
+object vAppPem: TvAppPem
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 584
+  ClientWidth = 804
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Layout1: TLayout
+    Align = Top
+    Size.Width = 804.000000000000000000
+    Size.Height = 81.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object Button1: TButton
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 41.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Firma - PEM'
+      TextSettings.Trimming = None
+      OnClick = Button1Click
+    end
+    object button2: TButton
+      Position.X = 145.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 41.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Shared Seed - PEM'
+      TextSettings.Trimming = None
+      OnClick = button2Click
+    end
+    object Button3: TButton
+      Position.X = 297.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 41.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'ToPEM'
+      TextSettings.Trimming = None
+      OnClick = Button3Click
+    end
+  end
+  object Memolog: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Align = Client
+    Size.Width = 804.000000000000000000
+    Size.Height = 503.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Viewport.Width = 800.000000000000000000
+    Viewport.Height = 499.000000000000000000
+  end
+end

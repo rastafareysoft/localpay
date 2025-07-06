@@ -1,33 +1,26 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <WORKSPACE>
  <FRAME activewindow="0">
-  <PLACEMENT>2c0000000200000003000000ffffffffffffffffffffffffffffffffb90000000c000000c7060000f0030000</PLACEMENT>
-  <WINDOW type="default" module="ISIS">
-   <editor metric="0" gridmajor="2540000" mode="00000000" zoom="0" scale="229" flipped="0" gridminor="254000" gridmode="32" snapidx="2" snap="254000" xcursor="0" orgmode="0" snaprange="127000">
-    <world y1="-8890000" x1="-12700000" y2="8890000" x2="12700000"/>
-    <centre x="-8382000" y="3810000"/>
-    <origin x="0" y="0"/>
-   </editor>
-  </WINDOW>
+  <PLACEMENT>2c0000000200000003000000ffffffffffffffffffffffffffffffff0a0000000100000008040000c3020000</PLACEMENT>
   <WINDOW type="default" module="ARES">
-   <editor metric="1" gridmajor="10000000" mode="00000000" zoom="-1" scale="33" flipped="0" gridminor="1000000" gridmode="32" snapidx="3" snap="250000" xcursor="0" orgmode="0" snaprange="384848">
+   <editor metric="1" gridmajor="10000000" mode="00000000" zoom="-1" scale="77" flipped="0" gridminor="500000" gridmode="32" snapidx="3" snap="250000" xcursor="0" orgmode="0" snaprange="164935">
     <world y1="-12700000" x1="-15240000" y2="12700000" x2="15240000"/>
-    <centre x="-20250000" y="3750000"/>
+    <centre x="0" y="0"/>
     <origin x="0" y="0"/>
    </editor>
   </WINDOW>
  </FRAME>
  <MODULE name="ARES">
-  <editor metric="1" gridmajor="10000000" mode="00000000" zoom="-1" scale="33" flipped="0" gridminor="1000000" gridmode="32" snapidx="3" snap="250000" xcursor="0" orgmode="0" snaprange="384848">
+  <editor metric="1" gridmajor="10000000" mode="00000000" zoom="-1" scale="77" flipped="0" gridminor="500000" gridmode="32" snapidx="3" snap="250000" xcursor="0" orgmode="0" snaprange="164935">
    <world y1="-12700000" x1="-15240000" y2="12700000" x2="15240000"/>
-   <centre x="-20250000" y="3750000"/>
+   <centre x="0" y="0"/>
    <origin x="0" y="0"/>
   </editor>
  </MODULE>
  <MODULE name="ISIS">
-  <editor metric="0" gridmajor="2540000" mode="00000000" zoom="0" scale="229" flipped="0" gridminor="254000" gridmode="32" snapidx="2" snap="254000" xcursor="0" orgmode="0" snaprange="127000">
+  <editor metric="0" gridmajor="2540000" mode="00000000" zoom="-1" scale="264" flipped="0" gridminor="254000" gridmode="32" snapidx="2" snap="254000" xcursor="0" orgmode="0" snaprange="127000">
    <world y1="-8890000" x1="-12700000" y2="8890000" x2="12700000"/>
-   <centre x="-8382000" y="3810000"/>
+   <centre x="-4572000" y="-508000"/>
    <origin x="0" y="0"/>
   </editor>
  </MODULE>
@@ -35,7 +28,7 @@
   <PWI>
    <POPUP w="913" x="23" flags="00000002" y="229" h="300" pid="0" iid="-1">
     <PROPERTIES>
-     <ITEM name="Message Column Width">-22</ITEM>
+     <ITEM name="Message Column Width">-142</ITEM>
      <ITEM name="ShowGrid">No</ITEM>
      <ITEM name="Source Column Width">100</ITEM>
      <ITEM name="Time Column Width">120</ITEM>
@@ -187,7 +180,7 @@
      <ITEM name="TopLineAddress">00000020</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="469" x="1384" flags="00000023" y="265" h="248" pid="0" iid="5">
+   <POPUP w="469" x="1426" flags="00000022" y="265" h="248" pid="0" iid="5">
     <PROPERTIES>
      <ITEM name="AutoEcho">0</ITEM>
      <ITEM name="HexMode">0</ITEM>
@@ -268,7 +261,7 @@
      <ITEM name="HexMode">0</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="369" x="451" flags="00008023" y="245" h="199" pid="0" iid="9">
+   <POPUP w="369" x="312" flags="00008023" y="242" h="199" pid="0" iid="9">
     <PROPERTIES>
      <ITEM name="AutoEcho">0</ITEM>
      <ITEM name="HexMode">0</ITEM>

@@ -1,0 +1,51 @@
+object vAppPemPrivate: TvAppPemPrivate
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 520
+  ClientWidth = 804
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Layout1: TLayout
+    Align = Top
+    Size.Width = 804.000000000000000000
+    Size.Height = 81.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object Button3: TButton
+      Position.X = 249.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 41.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Pem Private'
+      TextSettings.Trimming = None
+      OnClick = Button3Click
+    end
+    object Button1: TButton
+      Position.X = 441.000000000000000000
+      Position.Y = 32.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 41.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Pem Public'
+      TextSettings.Trimming = None
+      OnClick = Button1Click
+    end
+  end
+  object Memolog: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Align = Client
+    Size.Width = 804.000000000000000000
+    Size.Height = 439.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Viewport.Width = 804.000000000000000000
+    Viewport.Height = 439.000000000000000000
+  end
+end

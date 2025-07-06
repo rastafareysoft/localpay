@@ -1,0 +1,52 @@
+object vAppEcc: TvAppEcc
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 596
+  ClientWidth = 820
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Layout1: TLayout
+    Align = Top
+    Size.Width = 820.000000000000000000
+    Size.Height = 81.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object Button3: TButton
+      Position.X = 297.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 41.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Test Ecc'
+      TextSettings.Trimming = None
+      OnClick = Button3Click
+    end
+    object Button1: TButton
+      Position.X = 449.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 41.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'P Keysar'
+      TextSettings.Trimming = None
+      OnClick = Button1Click
+    end
+  end
+  object Memolog: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    TextSettings.WordWrap = True
+    Align = Client
+    Size.Width = 820.000000000000000000
+    Size.Height = 515.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Viewport.Width = 816.000000000000000000
+    Viewport.Height = 511.000000000000000000
+  end
+end

@@ -7,18 +7,22 @@
  */
 
 #include <SPI.h>
-#include <MFRC522.h>
-                    
-#define RST_PIN         15  
-#define SS_PIN          11 
+#include <MFRC522v2.h>
+#include <MFRC522DriverSPI.h>
+#include <MFRC522DriverPinSimple.h>
+#include <MFRC522Constants.h>
 
-#define PIN_MOSI 13
-#define PIN_MISO 12
-#define PIN_SCK 14
-#define PIN_CS 11 
+//#define RST_PIN   15  
+#define PIN_MOSI  13
+#define PIN_MISO  12
+#define PIN_SCK   14
+#define PIN_CS    11 
 
-MFRC522 mfrc522(SS_PIN, RST_PIN);
+MFRC522DriverPinSimple ss_pin(PIN_CS); 
 
+MFRC522DriverSPI driver{ss_pin}; 
+MFRC522 mfrc522{driver}; 
+                  
 void simulateTransaction();
 void printDuration(const char* stepName, unsigned long startTime);
 
@@ -28,7 +32,6 @@ void setup() {
   //SPI.begin();
   SPI.begin(PIN_SCK, PIN_MISO, PIN_MOSI, PIN_CS);
   mfrc522.PCD_Init();
-  delay(4);	
   Serial.println("\n");
   Serial.println("===================================================");
   Serial.println("Simulador de Tiempos de Transacción (Modelo Óptimo)");
@@ -38,13 +41,13 @@ void setup() {
 
 void loop() {
   if ( ! mfrc522.PICC_IsNewCardPresent() || ! mfrc522.PICC_ReadCardSerial() ) {
-    Serial.println("No hay tarjeta");
+    //Serial.println("No hay tarjeta");
     delay(100);
     return;
   }
   simulateTransaction();
-  Serial.println("\nPasados 3 segundos, acerque una nueva tarjeta...");
-  delay(3000); 
+  Serial.println("\nPasados 1/2 segundos, acerque una nueva tarjeta...");
+  delay(500); 
 }
 
 void simulateTransaction() {
@@ -60,8 +63,8 @@ void simulateTransaction() {
 
   // --- FASE 1 ---
   byte headerBlock = 4;
-  status = mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, headerBlock, &key, &(mfrc522.uid));
-  if (status != MFRC522::STATUS_OK) { 
+  status = mfrc522.PCD_Authenticate(MFRC522Constants::PICC_Command::PICC_CMD_MF_AUTH_KEY_A, headerBlock, &key, &(mfrc522.uid));
+  if (status != MFRC522Constants::STATUS_OK) { 
     Serial.println("Fallo Autenticación Sector 1"); 
     mfrc522.PICC_HaltA(); 
     mfrc522.PCD_StopCrypto1(); 
@@ -69,7 +72,7 @@ void simulateTransaction() {
   }
   for (int i=0; i < 3; i++) {
     status = mfrc522.MIFARE_Read(headerBlock + i, buffer, &size);
-    if (status != MFRC522::STATUS_OK) { 
+    if (status != MFRC522Constants::STATUS_OK) { 
       Serial.print("Fallo lectura bloque ");
       Serial.println(headerBlock + i); 
       mfrc522.PICC_HaltA(); 
@@ -83,8 +86,8 @@ void simulateTransaction() {
 
   // --- FASE 2 ---
   byte wallet1Block = 8;
-  status = mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, wallet1Block, &key, &(mfrc522.uid));
-  if (status != MFRC522::STATUS_OK) { 
+  status = mfrc522.PCD_Authenticate(MFRC522Constants::PICC_Command::PICC_CMD_MF_AUTH_KEY_A, wallet1Block, &key, &(mfrc522.uid));
+  if (status != MFRC522Constants::STATUS_OK) { 
     Serial.println("Fallo Autenticación Sector 2"); 
     mfrc522.PICC_HaltA(); 
     mfrc522.PCD_StopCrypto1(); 
@@ -92,7 +95,7 @@ void simulateTransaction() {
   }
   for (int i=0; i < 3; i++) {
     status = mfrc522.MIFARE_Read(wallet1Block + i, buffer, &size);
-    if (status != MFRC522::STATUS_OK) { 
+    if (status != MFRC522Constants::STATUS_OK) { 
       Serial.print("Fallo lectura bloque "); 
       Serial.println(wallet1Block + i); 
       mfrc522.PICC_HaltA(); 
@@ -103,8 +106,8 @@ void simulateTransaction() {
   printDuration("Paso  5-7 (Lectura Wallet P.)", startTime);
 
   byte wallet2Block = 12;
-  status = mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, wallet2Block, &key, &(mfrc522.uid));
-  if (status != MFRC522::STATUS_OK) { 
+  status = mfrc522.PCD_Authenticate(MFRC522Constants::PICC_Command::PICC_CMD_MF_AUTH_KEY_A, wallet2Block, &key, &(mfrc522.uid));
+  if (status != MFRC522Constants::STATUS_OK) { 
     Serial.println("Fallo Autenticación Sector 3"); 
     mfrc522.PICC_HaltA(); 
     mfrc522.PCD_StopCrypto1(); 
@@ -112,7 +115,7 @@ void simulateTransaction() {
   }
   for (int i=0; i < 3; i++) {
     status = mfrc522.MIFARE_Read(wallet2Block + i, buffer, &size);
-    if (status != MFRC522::STATUS_OK) { 
+    if (status != MFRC522Constants::STATUS_OK) { 
       Serial.print("Fallo lectura bloque "); 
       Serial.println(wallet2Block + i); 
       mfrc522.PICC_HaltA(); 
@@ -131,7 +134,7 @@ void simulateTransaction() {
   // PASO 12: Escritura en Wallet Respaldo (Sin fixes)
   for (int i=0; i < 3; i++) {
     status = mfrc522.MIFARE_Write(wallet2Block + i, dummyData, 16);
-    if (status != MFRC522::STATUS_OK) { 
+    if (status != MFRC522Constants::STATUS_OK) { 
       Serial.print("Fallo escritura bloque "); 
       Serial.println(wallet2Block + i); 
       mfrc522.PICC_HaltA(); 
@@ -144,9 +147,14 @@ void simulateTransaction() {
   // PASO 13: Escritura en Wallet Principal (Sin fixes)
   /*for (int i=0; i < 3; i++) {
     status = mfrc522.MIFARE_Write(wallet1Block + i, dummyData, 16);
-    if (status != MFRC522::STATUS_OK) { Serial.print("Fallo escritura bloque "); Serial.println(wallet1Block + i); mfrc522.PICC_HaltA(); mfrc522.PCD_StopCrypto1(); return; }
+    if (status != MFRC522Constants::STATUS_OK) { 
+      Serial.print("Fallo escritura bloque "); 
+      Serial.println(wallet1Block + i); 
+      mfrc522.PICC_HaltA(); 
+      mfrc522.PCD_StopCrypto1(); 
+      return; 
+    }
   }*/
-
 
   //fix Begin
   // --- LA NUEVA SOLUCIÓN: "GRAN RESET" ---
@@ -165,22 +173,22 @@ void simulateTransaction() {
 
   // Ahora procedemos con la escritura en la Wallet Principal
   // Autenticamos de nuevo porque el reset borró la sesión anterior
-  status = mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, wallet1Block, &key, &(mfrc522.uid));
-  if (status != MFRC522::STATUS_OK) { 
+  status = mfrc522.PCD_Authenticate(MFRC522Constants::PICC_Command::PICC_CMD_MF_AUTH_KEY_A, wallet1Block, &key, &(mfrc522.uid));
+  if (status != MFRC522Constants::STATUS_OK) { 
     Serial.println("Fallo Re-Autenticación Sector 2 Post-Reset"); 
     return; }
 
   for (int i=0; i < 3; i++) {
     status = mfrc522.MIFARE_Write(wallet1Block + i, dummyData, 16);
-    if (status != MFRC522::STATUS_OK) { 
+    if (status != MFRC522Constants::STATUS_OK) { 
       Serial.print("Fallo escritura bloque "); 
       Serial.println(wallet1Block + i); 
       return;
     }
     
     // La re-autenticación aquí puede ser redundante después del Init, pero no hace daño
-    status = mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, wallet1Block, &key, &(mfrc522.uid));
-    if (status != MFRC522::STATUS_OK) { 
+    status = mfrc522.PCD_Authenticate(MFRC522Constants::PICC_Command::PICC_CMD_MF_AUTH_KEY_A, wallet1Block, &key, &(mfrc522.uid));
+    if (status != MFRC522Constants::STATUS_OK) { 
       Serial.println("Fallo Re-Autenticación en bucle Sector 2"); 
       return; 
     }
@@ -191,7 +199,7 @@ void simulateTransaction() {
 
   // --- FASE 4 ---
   status = mfrc522.MIFARE_Read(wallet1Block, buffer, &size);
-  if (status != MFRC522::STATUS_OK) { 
+  if (status != MFRC522Constants::STATUS_OK) { 
     Serial.print("Fallo lectura bloque "); 
     Serial.println(wallet1Block); 
     mfrc522.PICC_HaltA(); 

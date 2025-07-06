@@ -3,6 +3,7 @@
   #include <MFRC522.h>
   #define RST_PIN 9   // Configurable, see typical pin layout above
   #define SS_PIN  10 // Configurable, see typical pin layout above
+
   MFRC522 rfid(SS_PIN, RST_PIN); // Create MFRC522 instance  
 //LCD
   #include <Wire.h> 
@@ -17,6 +18,7 @@
     //Pins IN
     const int __PIN_IN_GREEN  = 4;
     const int __PIN_IN_YELLOW = 3;
+
     const int __PIN_IN_RED    = 2;
     //Pins OUT
     const int __PIN_OUT_WASH = 6;
@@ -30,23 +32,23 @@
     const int __PIN_OUT_WASH  = 14; //D5 
     const int __PIN_OUT_FILL = 4;   //D2
   #endif
-//-----------------------------------------------------------------
-#ifndef DEBUG //Real time
-  //Jumper
-    int __DELAY_OPTIONS = 250;  
-    int __DELAY_FINALIZE = 5000;
-  //Tiempos de procesos (en milisegundos)
-    const unsigned long TIME_WASH = 9000;
-    const unsigned long TIME_FILL = 9000;
-#else //Simulation    
-  //Jumper
-    int __DELAY_OPTIONS = 100;  
-    int __DELAY_FINALIZE = 4000;
-  //Tiempos de procesos (en milisegundos)
-    const unsigned long TIME_WASH =  3000;
-    const unsigned long TIME_FILL = 3000;
-    //#define SIMULATOR //For proteus or any simulator
-#endif    
+//Modes
+  #ifndef DEBUG //Real time
+    //Jumper
+      int __DELAY_OPTIONS = 100;  
+      int __DELAY_FINALIZE = 3000;
+    //Tiempos de procesos (en milisegundos)
+      const unsigned long TIME_WASH = 4000;
+      const unsigned long TIME_FILL = 4000;
+  #else //Simulation    
+    //Jumper
+      int __DELAY_OPTIONS = 250;  
+      int __DELAY_FINALIZE = 4000;
+    //Tiempos de procesos (en milisegundos)
+      const unsigned long TIME_WASH = 3000;
+      const unsigned long TIME_FILL = 3000;
+      //#define SIMULATOR //For proteus or any simulator
+  #endif    
 
 enum TStateMachine {
   stNone,
@@ -71,7 +73,8 @@ enum TOptions {
   TStateMachine currentState = stSelection;
   TStateMachine lastState = stNone;
   unsigned long processStartTime; //Block time
-  bool processStop = false; //Porcess interrup for the users 
+  unsigned long processTime = 0; //Time count stop
+  bool processStop = false; //Porcess interrup for users 
   TOptions selectedOption = opNone; 
 
 void setup() {  
@@ -79,7 +82,7 @@ void setup() {
   lcd.init();
   lcd.backlight();
   //Serial
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial);	// Do nothing if no serial port is opened (added for Arduinos based on ATMEGA32U4)   
   //Pins IN
   pinMode(__PIN_IN_GREEN,  INPUT);
@@ -170,14 +173,12 @@ void stateNone(){
 };
 
 void stateSelection(){ 
-  if (currentState != lastState) {
-    #ifdef DEBUG
-              //1234567890123456789012345678901234567890
-      lcdWrite("Seleccione botellon", 
-               "[VERDE] 15 lts 3$", 
-               "[AMARILLO] 10 lts 2$", 
-               "[ROJO] 5 lts 1$");
-    #endif
+  if (currentState != lastState) {    
+            //1234567890123456789012345678901234567890
+    lcdWrite("Seleccione botellon", 
+             "[VERDE] 15 lts 3$", 
+             "[AMARILLO] 10 lts 2$", 
+             "[ROJO] 5 lts 1$");
     selectedOption = opNone;
     lastState = currentState; 
   } else {
@@ -204,13 +205,11 @@ void stateSelection(){
 
 void stateWaitingForPayment() { 
   if (currentState != lastState) {    
-    #ifdef DEBUG 
-                //12345678901234567890
-        lcdWrite("Presente su TARJETA", 
-                 "en el LECTOR", 
-                 strSelected(), 
-                 "[ROJO] volver a MENU");
-    #endif
+            //12345678901234567890
+    lcdWrite("Presente su TARJETA", 
+             "en el LECTOR", 
+              strSelected(), 
+             "[ROJO] volver a MENU");
     lastState = currentState;
   } else {
     if (digitalRead(__PIN_IN_RED) == HIGH) {      
@@ -222,23 +221,18 @@ void stateWaitingForPayment() {
         if (statusPayment == 0) 
           currentState = stWaitingForWashing;
         else if (statusPayment == 1) {
-          #ifdef DEBUG
                     //12345678901234567890
-            lcdWrite("Tipo Tarje. invalida", 
-                     "Presente TARJETA", 
-                     strSelected(), 
-                     "[ROJO] volver a MENU");
-            delay(500);
-          #endif
-        } 
-        else if (statusPayment == 2) {
-          #ifdef DEBUG
-            lcdWrite("Tarjeta invalida", 
-                     "Presente TARJETA", 
-                     strSelected(), 
-                     "[ROJO] volver a MENU");
-            delay(500);
-          #endif
+          lcdWrite("Tipo Tarje. invalida", 
+                   "Presente TARJETA", 
+                   strSelected(), 
+                   "[ROJO] volver a MENU");
+          delay(500);
+        } else if (statusPayment == 2) {
+          lcdWrite("Tarjeta invalida", 
+                   "Presente TARJETA", 
+                   strSelected(), 
+                   "[ROJO] volver a MENU");
+          delay(500);        
         }  
       }
     }  
@@ -258,16 +252,15 @@ String strSelected() {
 
 void stateWaitingForWashing() { 
   if (currentState != lastState) {
-    #ifdef DEBUG
-              //12345678901234567890
-      lcdWrite("Coloque botellon", 
-               "para el LAVADO", 
-               "[VERDE] iniciar para",
-               "el LAVADO");
-    #endif
+            //12345678901234567890
+    lcdWrite("Coloque botellon", 
+             "para el LAVADO", 
+             "[VERDE] iniciar para",
+             "el LAVADO");
     lastState = currentState;
   } else {
-    if (digitalRead(__PIN_IN_GREEN) == HIGH) {      
+    if (digitalRead(__PIN_IN_GREEN) == HIGH) {    
+      processTime = TIME_WASH;  
       currentState = stWashing;
       delay(__DELAY_OPTIONS); //Debe ser bloqueante para debounce
       digitalWrite(__PIN_OUT_WASH, HIGH);
@@ -281,54 +274,50 @@ void stateWashing() {
         digitalWrite(__PIN_OUT_WASH, HIGH); // Iniciar lavado
         processStartTime = millis(); //Guardar tiempo de inicio
         lastState = currentState;
-        #ifdef DEBUG
-                    //12345678901234567890
-            lcdWrite("LAVANDO botellon", 
-                     "Espere por favor ...", 
-                     "[ROJO] Parada de", 
-                     "EMERGENCIA");
-        #endif
+                  //12345678901234567890
+          lcdWrite("LAVANDO botellon", 
+                   "Espere por favor ...", 
+                   "[ROJO] Parada de", 
+                   "EMERGENCIA");
     } else if (!processStop) {
       if (digitalRead(__PIN_IN_RED) == HIGH) {    
-          processStartTime = millis(); //Guardar tiempo de parada       
-          processStop = true; //evita el avance del contador
-          digitalWrite(__PIN_OUT_WASH, LOW); // Detener lavado INMEDIATAMENTE
-          #ifdef DEBUG
-                      //12345678901234567890
-              lcdWrite("LAVADO detenido por", 
-                       "el usuario", 
-                       "VERDE] reanudar", 
-                       "el LAVADO");
-          #endif
-          delay(__DELAY_OPTIONS);
-          return; // Salir de la función para procesar el nuevo estado en el siguiente ciclo
+        processStartTime = millis() - processStartTime; // !!! important ¡¡¡ se va usar pra cualcular tiempo que lleva
+        processStop = true; //evita el avance del contador
+        digitalWrite(__PIN_OUT_WASH, LOW); // Detener lavado INMEDIATAMENTE
+                  //12345678901234567890
+        lcdWrite("LAVADO detenido por", 
+                  "el usuario", 
+                  "VERDE] reanudar", 
+                  "el LAVADO");
+        delay(__DELAY_OPTIONS);
+        return; // Salir de la función para procesar el nuevo estado en el siguiente ciclo
       }
     }  
 
     if (!processStop) { 
-      if (millis() - processStartTime >= TIME_WASH) {
-          digitalWrite(__PIN_OUT_WASH, LOW); // Detener lavado
-          currentState = stWaitingForFilling; // Pasar al siguiente estado
+      if (millis() - processStartTime >= processTime) {
+        digitalWrite(__PIN_OUT_WASH, LOW); // Detener lavado
+        currentState = stWaitingForFilling; // Pasar al siguiente estado
       }
     } if (digitalRead(__PIN_IN_GREEN) == HIGH) {
-          processStop = false;
-          digitalWrite(__PIN_OUT_WASH, HIGH);
-          delay(__DELAY_OPTIONS);
+      processTime = processTime - processStartTime;
+      lastState = stNone;
+      processStop = false;
+      delay(__DELAY_OPTIONS);
     }  
 }
 
 void stateWaitingForFilling() {
    if (currentState != lastState) {
-    #ifdef DEBUG
-              //12345678901234567890
-      lcdWrite("Coloque botellon",
-               "para el LLENADO", 
-               "[VERDE] para iniciar",
-               "el LLENADO");
-    #endif
+            //12345678901234567890
+    lcdWrite("Coloque botellon",
+             "para el LLENADO", 
+             "[VERDE] para iniciar",
+             "el LLENADO");
     lastState = currentState;
   } else {
-    if (digitalRead(__PIN_IN_GREEN) == HIGH) {      
+    if (digitalRead(__PIN_IN_GREEN) == HIGH) {
+      processTime = TIME_FILL;       
       currentState = stFill;
       delay(__DELAY_OPTIONS); //Debe ser bloqueante para debounce
       digitalWrite(__PIN_OUT_FILL, LOW);
@@ -339,68 +328,60 @@ void stateWaitingForFilling() {
 void stateFill() {
     // Esta sección se ejecuta solo una vez, al entrar al estado
     if (currentState != lastState) {
-        #ifdef DEBUG
-                    //12345678901234567890
-            lcdWrite("LLENANDO botellon", 
-                     "Espere por favor ...", 
-                     "[ROJO] Parada de",
-                     "EMERGENCIA");
-        #endif
-        digitalWrite(__PIN_OUT_FILL, HIGH); // Iniciar llenado
-        processStartTime = millis();        // Guardar tiempo de inicio
-        lastState = currentState;
+              //12345678901234567890
+      lcdWrite("LLENANDO botellon", 
+               "Espere por favor ...", 
+               "[ROJO] Parada de",
+               "EMERGENCIA");
+      digitalWrite(__PIN_OUT_FILL, HIGH); // Iniciar llenado
+      processStartTime = millis();        // Guardar tiempo de inicio
+      lastState = currentState;
     } else if (!processStop) {
       if  (digitalRead(__PIN_IN_RED) == HIGH) {
-        processStartTime = millis(); //Guardar tiempo de parada       
+        processStartTime = millis() - processStartTime; // !!! important ¡¡¡ se va usar pra cualcular tiempo que lleva      
         processStop = true; //evita el avance del contador
         digitalWrite(__PIN_OUT_FILL, LOW); // Detener llenado INMEDIATAMENTE
-        #ifdef DEBUG
-                    //12345678901234567890
-            lcdWrite("LLENADO detenido",
-                     "por el usuario", 
-                     "[VERDE] reanudar",
-                     "el LLENANO");
-        #endif
+                //12345678901234567890
+        lcdWrite("LLENADO detenido",
+                 "por el usuario", 
+                 "[VERDE] reanudar",
+                 "el LLENANO");
         delay(__DELAY_OPTIONS);
         return;
       }
     } 
 
     if (!processStop) { 
-      if (millis() - processStartTime >= TIME_FILL) {
-          digitalWrite(__PIN_OUT_FILL, LOW); // Detener llenado
-          currentState = stFinalized;      // Pasar al siguiente estado
+      if (millis() - processStartTime >= processTime) {
+        digitalWrite(__PIN_OUT_FILL, LOW); // Detener llenado
+        currentState = stFinalized;      // Pasar al siguiente estado
       }
     } if (digitalRead(__PIN_IN_GREEN) == HIGH) {
-          processStop = false;
-          digitalWrite(__PIN_OUT_FILL, HIGH);
-          delay(__DELAY_OPTIONS);
+        processTime = processTime - processStartTime;
+        lastState = stNone;
+        processStop = false;
+        delay(__DELAY_OPTIONS);
     }
 }
 
 void stateFinalize() {
   if (currentState != lastState) {
-    #ifdef DEBUG
-              //12345678901234567890
-      lcdWrite("!!! Gracias !!!", 
-                "Por usar nuestros",
-                "servicios", 
-                "Vuelva pronto");
-    #endif
+            //12345678901234567890
+    lcdWrite("!!! Gracias !!!", 
+             "Por usar nuestros",
+             "servicios", 
+             "Vuelva pronto");
     lastState = currentState;
     delay(__DELAY_FINALIZE);
     currentState = stSelection;
   } 
 };
 
-
 void stateError() {
   if (currentState != lastState) {
-    #ifdef DEBUG
-      // El mensaje ya se mostró al momento de la parada de emergencia.
-      // Aquí podríamos esperar una acción del usuario para reiniciar.
-      lcdWrite("PROCESO DETENIDO", "Presione el boton VERDE", "para volver al menu principal", "");
-    #endif
+    // El mensaje ya se mostró al momento de la parada de emergencia.
+    // Aquí podríamos esperar una acción del usuario para reiniciar.
+    lcdWrite("PROCESO DETENIDO", "Presione el boton VERDE", "para volver al menu principal", "");
     lastState = currentState;
   } else {
     // Esperar a que el usuario presione el botón verde para reiniciar
@@ -412,16 +393,18 @@ void stateError() {
 };
 
 void lcdWrite(String l0, String l1, String l2, String l3) {
-  Serial.println("\n");
-  Serial.println(centerText(l0));
-  Serial.println(centerText(l1));
-  Serial.println(centerText(l2));
-  Serial.println(centerText(l3));
+  #ifdef DEBUG           
+    Serial.println("\n");
+    Serial.println(centerText(l0));
+    Serial.println(centerText(l1));
+    Serial.println(centerText(l2));
+    Serial.println(centerText(l3));
+  #endif  
   lcd.clear();
   lcd.setCursor(0, 0); lcd.print(centerText(l0));
   lcd.setCursor(0, 1); lcd.print(centerText(l1));
   lcd.setCursor(0, 2); lcd.print(centerText(l2));
-  lcd.setCursor(0, 3); lcd.print(centerText(l3));
+  lcd.setCursor(0, 3); lcd.print(centerText(l3));  
 }
 
 String centerText(String aText) {

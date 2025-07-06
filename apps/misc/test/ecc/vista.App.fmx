@@ -1,0 +1,33 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  Caption = 'Form2'
+  ClientHeight = 500
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object memoLog: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Position.X = 24.000000000000000000
+    Position.Y = 17.000000000000000000
+    Size.Width = 593.000000000000000000
+    Size.Height = 404.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Viewport.Width = 589.000000000000000000
+    Viewport.Height = 400.000000000000000000
+  end
+  object Button2: TButton
+    Anchors = [akLeft, akBottom]
+    Position.X = 496.000000000000000000
+    Position.Y = 448.000000000000000000
+    TabOrder = 1
+    Text = 'Button2'
+    TextSettings.Trimming = None
+    OnClick = Button2Click
+  end
+end
